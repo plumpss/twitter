@@ -12,7 +12,7 @@ class PlumpTwitterFeed {
 	public static $twitter_oauth_token;
 	public static $twitter_oauth_token_secret;
 	
-	public static function get_tweets($username, $limit = 5, $includeRetweets = false) {
+	public static function get_tweets($username, $limit = 5, $includeRetweets = FALSE) {
 		
 		require_once(Director::baseFolder() . '/' . PLUMP_TWITTER_BASE . '/thirdparty/twitteroauth/twitteroauth.php');
 		
@@ -27,7 +27,7 @@ class PlumpTwitterFeed {
 		
 		$config = array(
 			'include_entities' 	=> 'true',
-			'include_rts' 		=> $includeRetweets,
+			'include_rts' 		=> ($includeRetweets ? 'true' : 'false'),
 			'screen_name' 		=> $username
 		);
 		
