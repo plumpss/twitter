@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Plump Twitter feed class.
- * 
- * @TODO: Caching
+ * Plump Twitter feed class
  */
 class PlumpTwitterFeed {
 	
