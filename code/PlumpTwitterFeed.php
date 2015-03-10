@@ -1,5 +1,7 @@
 <?php
 
+use Abraham\TwitterOAuth\TwitterOAuth;
+
 /**
  * Plump Twitter feed class
  */

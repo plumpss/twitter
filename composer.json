@@ -1,0 +1,21 @@
+{
+    "name": "plumpss/twitter",
+    "type": "silverstripe-module",
+    "description": "SilverStripe Twitter helper module.",
+    "authors": [
+        {
+            "name": "James Howard",
+            "email": "james@plumpdigital.co.uk"
+        }
+    ],
+    "keywords": ["SilverStripe", "Twitter", "feed", "module"],
+    "license": "MIT",
+    "require": {
+        "silverstripe/cms": "~3.1",
+        "silverstripe/framework": "~3.1",
+        "abraham/twitteroauth": "0.5.*"
+    },
+    "extra": {
+        "installer-name": "plumpss-twitter"
+    }
+}
