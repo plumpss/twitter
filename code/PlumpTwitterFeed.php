@@ -73,9 +73,11 @@ class PlumpTwitterFeed extends Object {
 		}
 		
 		return new ArrayData(array(
-			'Date' => $date,
-			'Text' => $tweet->text,
-			'Html' => $html
+			'Date'     => $date,
+			'Username' => $tweet->user->screen_name,
+			'Avatar'   => $tweet->user->profile_image_url,
+			'Text'     => $tweet->text,
+			'Html'     => $html
 		));
 	}
 	
