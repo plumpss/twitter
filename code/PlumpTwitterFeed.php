@@ -14,8 +14,6 @@ class PlumpTwitterFeed {
 	
 	public static function get_tweets($username, $limit = 5, $includeRetweets = FALSE) {
 		
-		require_once(Director::baseFolder() . '/' . PLUMP_TWITTER_BASE . '/thirdparty/twitteroauth/twitteroauth.php');
-		
 		$connection = new TwitterOAuth(
 			self::$twitter_consumer_key,
 			self::$twitter_consumer_secret,
