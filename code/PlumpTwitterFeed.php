@@ -5,41 +5,38 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 /**
  * Plump Twitter feed class
  */
-class PlumpTwitterFeed {
+class PlumpTwitterFeed extends Object {
 	
-	public static $twitter_consumer_key;
-	public static $twitter_consumer_secret;
-	public static $twitter_oauth_token;
-	public static $twitter_oauth_token_secret;
-	
-	public static function get_tweets($username, $limit = 5, $includeRetweets = FALSE) {
+	public static function get_tweets($username, $limit = 5, $includeRetweets = FALSE, $excludeReplies = TRUE) {
+
+		$config = self::config();
 		
 		$connection = new TwitterOAuth(
-			self::$twitter_consumer_key,
-			self::$twitter_consumer_secret,
-			self::$twitter_oauth_token,
-			self::$twitter_oauth_token_secret
+			$config->twitter_consumer_key,
+			$config->twitter_consumer_secret,
+			$config->twitter_oauth_token,
+			$config->twitter_oauth_token_secret
 		);
+
+		$connection->setTimeouts(30, 30);
 		
-		$connection->host = 'https://api.twitter.com/1.1/';
-		
-		$config = array(
-			'include_entities' 	=> 'true',
-			'include_rts' 		=> ($includeRetweets ? 'true' : 'false'),
+		$parameters = array(
+			'count'             => $limit,
+			'include_entities' 	=> TRUE,
+			'include_rts' 		=> $includeRetweets,
+			'exclude_replies'   => $excludeReplies,
 			'screen_name' 		=> $username
 		);
 		
-		$tweets = $connection->get('statuses/user_timeline', $config);
+		$tweets = $connection->get('statuses/user_timeline', $parameters);
 		
 		$tweetList = new ArrayList();
 		
 		if (count($tweets) > 0 && !isset($tweets->error)) {
 			foreach($tweets as $i => $tweet) {
-				if ($i + 1 > $limit) break;
 				$tweetList->push(self::create_tweet($tweet));
 			}
 		}
-		
 		return $tweetList;
 	}
 	
